@@ -2,10 +2,10 @@
  
 ---
 
-### **NAME:**  
-### **DEPARTMENT:**  
-### **ROLL NO:**  
-### **DATE OF EXPERIMENT:**  
+### **NAME:**  JEEVIKA R
+### **DEPARTMENT:**  BE CSE 
+### **ROLL NO:**  212224040137
+### **DATE OF EXPERIMENT:**  6/3/2025
 
 ---
 
@@ -54,6 +54,9 @@ The sensor measures **temperature using a thermistor** and **humidity using a ca
 ---
 
 ## **CIRCUIT DIAGRAM:**  
+
+![image](https://github.com/user-attachments/assets/7e038bf4-41c4-400b-9ab5-f6dde7231433)
+
 ### **Connections:**  
 
 | DHT22 Pin | Raspberry Pi Pico Pin |
@@ -66,13 +69,37 @@ The sensor measures **temperature using a thermistor** and **humidity using a ca
 ---
 
 ## **PROGRAM (MicroPython)**  
-``` ```
+```
+import machine
+import time
+
+# Define DHT22 sensor pin (GPIO XX -15)
+dht_pin = machine.Pin(15, machine.Pin.IN, machine.Pin.PULL_UP)
+sensor = dht.DHT22(dht_pin)
+
+while True:
+    try:
+        sensor.measure()
+        temp = sensor.temperature()  # Get temperature in Celsius
+        hum = sensor.humidity()  # Get humidity
+
+        print(f"Temperature: {temp:.1f}°C")
+        print(f"Humidity: {hum:.1f}%")
+
+    except Exception as e:
+        print("Error reading sensor:", e)
+
+    time.sleep(2)  # Wait for 2 seconds before next reading
+
+
+```
 
 ---
 
 ## **OUTPUT:**  
  
 ---
+![image](https://github.com/user-attachments/assets/fea6873b-9d8c-4c15-a605-dd5ebcba88dd)
 
   
 ---
